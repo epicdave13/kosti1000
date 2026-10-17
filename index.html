@@ -32,8 +32,13 @@
 </head>
 
 <body class="bg-radial from-green-800 to-lime-900 text-slate-100 h-dvh overflow-hidden flex flex-col justify-start p-4">
-
-
+    <!-- НЕВИДИМЫЙ КОНТЕЙНЕР ДЛЯ ТОСТОВ: ПАРИТ СВЕРХУ ПОВЕРХ ИГРОКОВ -->
+    <!-- fixed top-4 заставляет контейнер висеть намертво вверху экрана -->
+    <!-- absolute/fixed элементы не выбивают другие блоки из их мест -->
+    <div id="toast-container"
+        class="fixed top-4 left-4 right-4 max-w-md mx-auto flex flex-col gap-2 pointer-events-none z-50">
+        <!-- Сюда будут прилетать уведомления -->
+    </div>
 
     <!-- РОДИТЕЛЬСКИЙ КОНТЕЙНЕР С МЯГКИМ РАЗМЫТИЕМ СНИЗУ -->
     <!-- Мы используем маску-градиент, которая плавно растворяет нижние 20% контейнера -->
@@ -232,21 +237,9 @@
 
         </div>
     </main>
+
     <!-- НИЖНЯЯ ПАНЕЛЬ: ЛОГ И КНОПКА УПРАВЛЕНИЯ -->
     <footer class="w-full max-w-md mx-auto flex flex-col gap-3 mt-auto mb-2">
-
-        <!-- ОКНО ИГРОВЫХ ЛОГОВ (ИСТОРИЯ ХОДОВ) -->
-        <!-- bg-slate-950/60 дает красивый темный фон, а no-scrollbar прячет полосу прокрутки -->
-        <div class="w-full bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3 shadow-xl">
-            <div id="log" class="h-24 overflow-y-auto text-xs space-y-1.5 no-scrollbar text-slate-300 font-medium">
-                <!-- Временные строки для примера, чтобы видеть, как лог выглядит на сукне -->
-                <p class="text-slate-400 font-bold border-b border-slate-900/40 pb-0.5">🎲 Игра началась! Комната #7582
-                </p>
-                <p class="text-slate-300">Игрок <span class="text-slate-100 font-bold">Олег</span> вошел в игру.</p>
-                <p class="text-rose-400/90 font-medium">绝 Данил выбросил [2, 3, 4, 6, 6] — это 0 очков (Болт)!</p>
-                <p class="text-emerald-400 font-semibold">🎉 Олег выбросил [1, 1, 1, 5, 2] и набрал +105 очков!</p>
-            </div>
-        </div>
 
         <!-- ГЛАВНАЯ КНОПКА УПРАВЛЕНИЯ -->
         <!-- Кнопка сделана крупной (py-4.5), с жирным шрифтом (font-black) и эффектом легкого нажатия (active:scale-95) -->
