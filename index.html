@@ -30,8 +30,9 @@
 
 </head>
 
-<body
-    class="bg-radial from-green-800 to-lime-900 text-slate-100 min-h-screen flex flex-col justify-between p-4 pb-safe pt-safe">
+<body class="bg-radial from-green-800 to-lime-900 text-slate-100 h-dvh overflow-hidden flex flex-col justify-start p-4">
+
+
 
     <!-- РОДИТЕЛЬСКИЙ КОНТЕЙНЕР С МЯГКИМ РАЗМЫТИЕМ СНИЗУ -->
     <!-- Мы используем маску-градиент, которая плавно растворяет нижние 20% контейнера -->
@@ -227,7 +228,7 @@
         </div>
     </main>
     <!-- НИЖНЯЯ ПАНЕЛЬ: ЛОГ И КНОПКА УПРАВЛЕНИЯ -->
-    <footer class="w-full max-w-md mx-auto flex flex-col gap-3 pb-4">
+    <footer class="w-full max-w-md mx-auto flex flex-col gap-3 mt-auto mb-2">
 
         <!-- ОКНО ИГРОВЫХ ЛОГОВ (ИСТОРИЯ ХОДОВ) -->
         <!-- bg-slate-950/60 дает красивый темный фон, а no-scrollbar прячет полосу прокрутки -->
@@ -254,7 +255,9 @@
 
     <script src="static/js/nozoom.js"></script>
     <script src="static/js/game.js"></script>
-    <script>alert(window.innerWidth + 'x' + window.innerHeight)</script>
+    <script>
+        alert(window.innerWidth + 'x' + window.innerHeight)
+    </script>
 </body>
 
 </html>
