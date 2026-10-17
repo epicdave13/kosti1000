@@ -1,4 +1,4 @@
-// static/js/game.js — ЧАСТЬ 2: СИНХРOНИЗИРOВАННЫЙ ДВИЖОК С ЗАЩИТОЙ ОТ ИНЕРЦИОННЫХ НАЛОЖЕНИЙ
+// static/js/game.js — ЧАСТЬ 2: МОЩНЫЙ ФИЗИЧЕСКИЙ РАСКАТ С ЖЕСТКИМИ ОТСКОКАМИ ОТ СТЕНOК
 
 const rollButton = document.getElementById('roll-btn');
 const diceContainer = document.getElementById('game-board');
@@ -28,22 +28,18 @@ if (rollButton && diceContainer) {
     rollButton.disabled = false;
 
     rollButton.onclick = () => {
-        initBoard(); // Сбрасываем кости в центр стола
+        initBoard(); // Освежаем стол перед броском
 
         rollButton.disabled = true;
         rollButton.classList.add('opacity-40', 'cursor-not-allowed');
 
         let totalPoints = 0;
 
-        // 🛠 ЖЕСТКИЕ ПАРАМЕТРЫ ДЛЯ СТОПРОЦЕНТНОГО ИСКЛЮЧЕНИЯ НАЛОЖЕНИЙ
+        // 🛠 ПАРАМЕТРЫ ШИРОКОГО 2D РАСКАТА
         const diceCount = 5;
-
-        // Хитбокс увеличен до 36 пикселей для создания железного зазора с учетом углов куба!
         const diceRadius = 36;
         const tableRadius = 135;
-
-        // Увеличили силу трения (0.93 вместо 0.96), чтобы кубики гасили скорость ровно за 1 секунду (60 кадров)
-        const friction = 0.93;
+        const friction = 0.94; // Слегка уменьшили трение, чтобы они дольше катились к краям
 
         const balls = [];
         const baseAngles = [0.0, 1.25, 2.5, 3.75, 5.0];
@@ -57,7 +53,7 @@ if (rollButton && diceContainer) {
             if (resultValue === 1) totalPoints += 10;
             if (resultValue === 5) totalPoints += 5;
 
-            // Запускаем упругое 3D-вращение (теперь длится ровно 1000ms)
+            // Запускаем 3D кувырки граней (1000ms)
             const randomX = (Math.floor(Math.random() * 4) + 2) * 360;
             const randomY = (Math.floor(Math.random() * 4) + 2) * 360;
             const randomZ = Math.floor(Math.random() * 50) - 25;
@@ -66,9 +62,10 @@ if (rollButton && diceContainer) {
                 cube.style.transform = `rotateZ(${randomZ}deg) rotateX(${randomX}deg) rotateY(${randomY}deg) ${faceTransforms[resultValue]}`;
             }, 10);
 
-            // Физический импульс 2D-вылета
+            // 🎯 УВЕЛИЧИЛИ СКОРОСТЬ ВЫБРОСА (startSpeed от 15 до 20 вместо старых 10-14),
+            // чтобы кости мощно разлетались из центра прямо к бортам!
             const shootAngle = baseAngles[i] + (Math.random() * 0.4 - 0.2);
-            const startSpeed = Math.random() * 4 + 10;
+            const startSpeed = Math.random() * 5 + 15;
 
             balls.push({
                 id: i,
@@ -82,21 +79,30 @@ if (rollButton && diceContainer) {
             });
         }
 
-        // ⏱ СИНХРOНИЗИРOВАННЫЙ ЦИКЛ ФИЗИКИ (РОВНО 60 КАДРОВ = 1 СЕКУНДА)
+        // ⏱ ПОКАДРОВЫЙ ЦИКЛ ФИЗИКИ С ПРОДЛЕННЫМ ВРЕМЕНЕМ РАСКАТА
         let physicsDuration = 0;
         const maxPhysicsTicks = 60;
 
         const physicsInterval = setInterval(() => {
             physicsDuration++;
 
-            // 1. Сдвиг координат и сила трения сукна
+            // Сдвинули жесткую фиксацию на 55-й кадр, давая кубикам больше времени
+            // на то, чтобы отскочить от бортов и занять просторные позиции по краям поля!
+            if (physicsDuration === 55) {
+                balls.forEach(b => {
+                    b.vx = 0;
+                    b.vy = 0;
+                });
+            }
+
+            // 1. Движение и трение
             balls.forEach(b => {
                 b.x += b.vx;
                 b.y += b.vy;
                 b.vx *= friction;
                 b.vy *= friction;
 
-                // 🛢 ОТСКОК ОТ СТЕНКИ СТОЛА (Круглый бортик)
+                // 🛢 МОЩНЫЙ ОТСКОК ОТ БОРТА (Коэффициент упругости поднят до 0.95!)
                 const distanceFromCenter = Math.sqrt(b.x * b.x + b.y * b.y);
                 if (distanceFromCenter + b.radius > tableRadius) {
                     const nx = b.x / distanceFromCenter;
@@ -106,12 +112,14 @@ if (rollButton && diceContainer) {
                     b.y = ny * (tableRadius - b.radius);
 
                     const dotProduct = b.vx * nx + b.vy * ny;
-                    b.vx = (b.vx - 2 * dotProduct * nx) * 0.75;
-                    b.vy = (b.vy - 2 * dotProduct * ny) * 0.75;
+
+                    // Было 0.75, стало 0.95 — кубик отскакивает от стенки как резиновый мяч!
+                    b.vx = (b.vx - 2 * dotProduct * nx) * 0.95;
+                    b.vy = (b.vy - 2 * dotProduct * ny) * 0.95;
                 }
             });
 
-            // 💥 ЧЕСТНЫЕ УПРУГИЕ СТОЛКНОВЕНИЯ КУБИКОВ ДРУГ ОБ ДРУГА
+            // 💥 ЧЕСТНЫЕ СТОЛКНОВЕНИЯ КУБИКОВ ДРУГ ОБ ДРУГА
             for (let i = 0; i < balls.length; i++) {
                 for (let j = i + 1; j < balls.length; j++) {
                     const b1 = balls[i];
@@ -144,19 +152,17 @@ if (rollButton && diceContainer) {
                 }
             }
 
-            // 📺 Отрисовываем сдвиг на экране
+            // Отрисовка
             balls.forEach(b => {
                 b.sceneElement.style.transform = `translate3d(${Math.floor(b.x)}px, ${Math.floor(b.y)}px, 0px)`;
             });
 
-            // Полная принудительная фиксация ровно на 60-м кадре
             if (physicsDuration >= maxPhysicsTicks) {
                 clearInterval(physicsInterval);
             }
 
         }, 1000 / 60);
 
-        // Кнопка и уведомление срабатывают ровно через 1050мс — синхронно с остановкой 3D кувырков!
         setTimeout(() => {
             rollButton.disabled = false;
             rollButton.classList.remove('opacity-40', 'cursor-not-allowed');
