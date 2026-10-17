@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Кости тыща</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            /* Отключает появление серой прозрачной рамки на iOS при быстром тапе по кубикам */
+            -webkit-tap-highlight-color: transparent;
+            /* Запрещает выделять текст и картинки (чтобы при долгом зажатии пальца на кубике не вылезало лупа или меню "копировать") */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE и Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+    </style>
+
+</head>
+
+<body
+    class="bg-radial from-green-800 to-lime-900 text-slate-100 min-h-screen flex flex-col justify-between p-4 pb-safe pt-safe">
+
+    <!-- РОДИТЕЛЬСКИЙ КОНТЕЙНЕР С МЯГКИМ РАЗМЫТИЕМ СНИЗУ -->
+    <!-- Мы используем маску-градиент, которая плавно растворяет нижние 20% контейнера -->
+    <div class="w-full relative"
+        style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);">
+
+        <!-- ТВОЕ ФИКСИРОВАННОЕ ОКНО ДЛЯ ИГРОКОВ (НЕ РАСТЕТ ВЫШЕ 160px) -->
+        <div class="w-full max-h-40 overflow-y-auto no-scrollbar pr-0.5 pb-4">
+
+            <!-- ВЕРТИКАЛЬНЫЙ СТЕК ИГРОКОВ -->
+            <section class="w-full flex flex-col gap-2">
+
+                <!-- Карточка 1: Данил (Сейчас ходит) -->
+                <div
+                    class="w-full bg-slate-900/60 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/80 flex items-center justify-between gap-3 shadow-lg flex-shrink-0">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></span>
+                        <div class="flex flex-col min-w-0">
+                            <span
+                                class="font-extrabold text-base text-slate-100 truncate tracking-wide leading-tight">Данил</span>
+                            <div class="flex gap-1 mt-1.5">
+                                <span
+                                    class="w-2 h-2 bg-rose-500 rounded-full shadow-md shadow-rose-500/60 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-rose-500 rounded-full shadow-md shadow-rose-500/60 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span
+                        class="font-mono font-black text-base bg-slate-950/80 px-3 py-1 rounded-lg border border-slate-800 text-amber-400 shadow-inner flex-shrink-0">
+                        350
+                    </span>
+                </div>
+
+                <!-- Карточка 2: Олег (Ждет очередь) -->
+                <div
+                    class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
+                        <div class="flex flex-col min-w-0">
+                            <span
+                                class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Олег</span>
+                            <div class="flex gap-1.5 mt-1.5">
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span
+                        class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
+                        120
+                    </span>
+                </div>
+
+                <!-- Карточка 3: Влад (Ждет очередь) -->
+                <div
+                    class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
+                        <div class="flex flex-col min-w-0">
+                            <span
+                                class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Влад</span>
+                            <div class="flex gap-1.5 mt-1.5">
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span
+                        class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
+                        450
+                    </span>
+                </div>
+
+                <!-- Карточка 4: Аня (Ждет очередь) -->
+                <div
+                    class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
+                        <div class="flex flex-col min-w-0">
+                            <span
+                                class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Аня</span>
+                            <div class="flex gap-1.5 mt-1.5">
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                <span
+                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span
+                        class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
+                        0
+                    </span>
+                </div>
+
+            </section>
+        </div>
+    </div>
+    <!-- ИГРОВОЙ СТОЛ (ЦЕНТР ЭКРАНА) -->
+    <!-- ИГРОВОЙ СТОЛ (ЦЕНТР ЭКРАНА) -->
+    <!-- ИГРОВОЙ СТОЛ С ТОЧЕЧНЫМИ КУБИКАМИ -->
+    <!-- ИГРОВОЙ СТОЛ С КРУПНЫМИ КУБИКАМИ -->
+    <main class="flex-grow flex items-center justify-center w-full max-w-md mx-auto my-4 px-1">
+
+        <!-- Зона кубиков (id="dice-container" для JS) -->
+        <!-- Мы сжали gap-1.5, чтобы 5 больших кубиков гарантированно влезли на Honor 360px -->
+        <div id="dice-container"
+            class="flex gap-1.5 sm:gap-2 justify-center items-center w-full min-h-[100px] bg-slate-900/10 border border-dashed border-slate-800/60 rounded-2xl p-2.5">
+
+            <!-- КУБИК 1 (Точка в центре) -->
+            <div
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <!-- КУБИК 2 (Две точки по диагонали) -->
+            <div
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+            </div>
+
+            <!-- КУБИК 3 (Три точки по диагонали) -->
+            <div
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+            </div>
+
+            <!-- КУБИК 4 (Четыре точки по углам) -->
+            <div
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+            </div>
+
+            <!-- КУБИК 5 (Четыре угла + центр) -->
+            <div
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+            </div>
+
+        </div>
+    </main>
+    <!-- НИЖНЯЯ ПАНЕЛЬ: ЛОГ И КНОПКА УПРАВЛЕНИЯ -->
+    <footer class="w-full max-w-md mx-auto flex flex-col gap-3 pb-4">
+
+        <!-- ОКНО ИГРОВЫХ ЛОГОВ (ИСТОРИЯ ХОДОВ) -->
+        <!-- bg-slate-950/60 дает красивый темный фон, а no-scrollbar прячет полосу прокрутки -->
+        <div class="w-full bg-slate-950/60 border border-slate-800/80 rounded-2xl p-3 shadow-xl">
+            <div id="log" class="h-24 overflow-y-auto text-xs space-y-1.5 no-scrollbar text-slate-300 font-medium">
+                <!-- Временные строки для примера, чтобы видеть, как лог выглядит на сукне -->
+                <p class="text-slate-400 font-bold border-b border-slate-900/40 pb-0.5">🎲 Игра началась! Комната #7582
+                </p>
+                <p class="text-slate-300">Игрок <span class="text-slate-100 font-bold">Олег</span> вошел в игру.</p>
+                <p class="text-rose-400/90 font-medium">绝 Данил выбросил [2, 3, 4, 6, 6] — это 0 очков (Болт)!</p>
+                <p class="text-emerald-400 font-semibold">🎉 Олег выбросил [1, 1, 1, 5, 2] и набрал +105 очков!</p>
+            </div>
+        </div>
+
+        <!-- ГЛАВНАЯ КНОПКА УПРАВЛЕНИЯ -->
+        <!-- Кнопка сделана крупной (py-4.5), с жирным шрифтом (font-black) и эффектом легкого нажатия (active:scale-95) -->
+        <!-- id="roll-btn" нужен, чтобы JS мог блокировать её (делать серой), когда ходит соперник -->
+        <button id="roll-btn"
+            class="w-full py-4.5 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-slate-950 font-black rounded-2xl text-base shadow-lg shadow-orange-500/20 active:scale-[0.97] transition-all duration-150 uppercase tracking-wider cursor-pointer select-none">
+            Бросить кубики
+        </button>
+
+    </footer>
+
+    <script src="static/js/nozoom.js"></script>
+    <script src="static/js/game.js"></script>
+</body>
+
+</html>
