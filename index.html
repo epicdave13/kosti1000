@@ -158,16 +158,19 @@
     <!-- ИГРОВОЙ СТОЛ (ЦЕНТР ЭКРАНА) -->
     <!-- ИГРОВОЙ СТОЛ С ТОЧЕЧНЫМИ КУБИКАМИ -->
     <!-- ИГРОВОЙ СТОЛ С КРУПНЫМИ КУБИКАМИ -->
-    <main class="flex-grow flex items-center justify-center w-full max-w-md mx-auto my-4 px-1">
+    <!-- ИГРОВОЙ СТОЛ (ХАOТИЧНЫЙ БРОСОК) -->
+    <!-- ИГРОВОЙ СТОЛ (ХАОТИЧНЫЙ БРОСОК БЕЗ НАЛОЖЕНИЙ) -->
+    <!-- ИГРОВОЙ СТОЛ (ВСЕ КУБИКИ СТРОГО В ПРЕДЕЛАХ СТОЛА) -->
+    <main class="flex-grow flex items-center justify-center w-full max-w-sm mx-auto my-2 px-2 select-none">
 
-        <!-- Зона кубиков (id="dice-container" для JS) -->
-        <!-- Мы сжали gap-1.5, чтобы 5 больших кубиков гарантированно влезли на Honor 360px -->
+        <!-- АРЕНА ДЛЯ КОСТЕЙ (id="dice-container" для JS) -->
+        <!-- Теперь это сетка 3х3, где кубики разбросаны по своим ячейкам -->
         <div id="dice-container"
-            class="flex gap-1.5 sm:gap-2 justify-center items-center w-full min-h-[100px] bg-slate-900/10 border border-dashed border-slate-800/60 rounded-2xl p-2.5">
+            class="w-full aspect-square bg-slate-900/10 border border-dashed border-slate-800/60 rounded-3xl grid grid-cols-3 grid-rows-3 p-4 gap-2 items-center justify-items-center shadow-inner">
 
-            <!-- КУБИК 1 (Точка в центре) -->
+            <!-- ЯЧЕЙКА 1: Левый верхний угол (Кубик 1) -->
             <div
-                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-xl shadow-slate-950/40 border border-white/50 -rotate-12 -mt-1 -ml-1">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -179,9 +182,9 @@
                 <div></div>
             </div>
 
-            <!-- КУБИК 2 (Две точки по диагонали) -->
+            <!-- ЯЧЕЙКА 2: Центр верх (Кубик 2) -->
             <div
-                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-xl shadow-slate-950/40 border border-white/50 rotate-30 mt-1">
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
                 <div></div>
                 <div></div>
@@ -193,9 +196,15 @@
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
             </div>
 
-            <!-- КУБИК 3 (Три точки по диагонали) -->
+            <!-- ЯЧЕЙКА 3: Правый верхний угол (Оставляем пустой для асимметрии) -->
+            <div></div>
+
+            <!-- ЯЧЕЙКА 4: Лево центр (Оставляем пустой) -->
+            <div></div>
+
+            <!-- ЯЧЕЙКА 5: Ровно по центру (Кубик 3) -->
             <div
-                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-xl shadow-slate-950/40 border border-white/50 rotate-12">
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
                 <div></div>
                 <div></div>
@@ -207,23 +216,23 @@
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
             </div>
 
-            <!-- КУБИК 4 (Четыре точки по углам) -->
+            <!-- ЯЧЕЙКА 6: Право центр (Кубик 4) -->
             <div
-                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-xl shadow-slate-950/40 border border-white/50 -rotate-30 -mr-2 mt-2">
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
                 <div></div>
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
-                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
                 <div></div>
-                <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
+                <div></div>
+                <div></div>
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
                 <div></div>
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
             </div>
 
-            <!-- КУБИК 5 (Четыре угла + центр) -->
+            <!-- ЯЧЕЙКА 7: Левый нижний угол (Кубик 5) -->
             <div
-                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-md shadow-slate-950/40 border border-white/50 flex-shrink-0">
+                class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 rounded-xl grid grid-cols-3 grid-rows-3 p-2 shadow-xl shadow-slate-950/40 border border-white/50 rotate-45 mb-2 ml-1">
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
                 <div></div>
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
@@ -234,9 +243,18 @@
                 <div></div>
                 <div class="w-2.5 h-2.5 bg-slate-950 rounded-full mx-auto my-auto"></div>
             </div>
+
+            <!-- ЯЧЕЙКА 8: Центр низ (Оставляем пустой) -->
+            <div></div>
+
+            <!-- ЯЧЕЙКА 9: Правый нижний угол (Оставляем пустой) -->
+            <div></div>
 
         </div>
     </main>
+
+
+
 
     <!-- НИЖНЯЯ ПАНЕЛЬ: ЛОГ И КНОПКА УПРАВЛЕНИЯ -->
     <footer class="w-full max-w-md mx-auto flex flex-col gap-3 mt-auto mb-2">
