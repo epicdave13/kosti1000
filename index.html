@@ -45,101 +45,105 @@
             <!-- ВЕРТИКАЛЬНЫЙ СТЕК ИГРОКОВ -->
             <section class="w-full flex flex-col gap-2">
 
-                <!-- Карточка 1: Данил (Сейчас ходит) -->
-                <div
-                    class="w-full bg-slate-900/60 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/80 flex items-center justify-between gap-3 shadow-lg flex-shrink-0">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></span>
-                        <div class="flex flex-col min-w-0">
-                            <span
-                                class="font-extrabold text-base text-slate-100 truncate tracking-wide leading-tight">Данил</span>
-                            <div class="flex gap-1 mt-1.5">
+                <!-- РОДИТЕЛЬСКИЙ КОНТЕЙНЕР С МЯГКИМ РАЗМЫТИЕМ СНИЗУ -->
+                <div class="w-full relative"
+                    style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);">
+
+                    <!-- ФИКСИРОВАННОЕ ОКНО ДЛЯ ИГРОКОВ (НЕ РАСТЕТ ВЫШЕ 160px) -->
+                    <div id="scoreboard"
+                        class="w-full max-h-40 overflow-y-auto no-scrollbar pr-0.5 pb-4 flex flex-col gap-2">
+
+                        <!-- Карточка 1: Данил (Сейчас ходит, поймал уже 2 болта) -->
+                        <div
+                            class="w-full bg-slate-900/60 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/80 flex items-center justify-between gap-3 shadow-lg flex-shrink-0">
+                            <div class="flex items-center gap-3 min-w-0">
                                 <span
-                                    class="w-2 h-2 bg-rose-500 rounded-full shadow-md shadow-rose-500/60 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-rose-500 rounded-full shadow-md shadow-rose-500/60 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
+                                    class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse flex-shrink-0"></span>
+                                <div class="flex flex-col min-w-0">
+                                    <span
+                                        class="font-extrabold text-base text-slate-100 truncate tracking-wide leading-tight">Данил</span>
+                                    <!-- Железные болты: два активных (прыгают), один бледный -->
+                                    <div class="flex gap-1 mt-1 text-sm select-none">
+                                        <span class="flex-shrink-0 animate-[bounce_0.3s_ease-in-out_1]">🔩</span>
+                                        <span class="flex-shrink-0 animate-[bounce_0.3s_ease-in-out_1]">🔩</span>
+                                        <span class="flex-shrink-0 opacity-20 filter grayscale">🔩</span>
+                                    </div>
+                                </div>
                             </div>
+                            <span
+                                class="font-mono font-black text-base bg-slate-950/80 px-3 py-1 rounded-lg border border-slate-800 text-amber-400 shadow-inner flex-shrink-0">
+                                350
+                            </span>
                         </div>
+
+                        <!-- Карточка 2: Олег (Ждет очередь, 0 болтов) -->
+                        <div
+                            class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
+                                <div class="flex flex-col min-w-0">
+                                    <span
+                                        class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Олег</span>
+                                    <!-- Все три болта пустые (серые) -->
+                                    <div class="flex gap-1 mt-1 text-sm select-none opacity-20 filter grayscale">
+                                        <span class="flex-shrink-0">🔩</span>
+                                        <span class="flex-shrink-0">🔩</span>
+                                        <span class="flex-shrink-0">🔩</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span
+                                class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
+                                120
+                            </span>
+                        </div>
+
+                        <!-- Карточка 3: Влад (Ждет очередь, 1 болт) -->
+                        <div
+                            class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
+                                <div class="flex flex-col min-w-0">
+                                    <span
+                                        class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Влад</span>
+                                    <!-- 1 активный железный болт, 2 пустых -->
+                                    <div class="flex gap-1 mt-1 text-sm select-none">
+                                        <span class="flex-shrink-0">🔩</span>
+                                        <span class="flex-shrink-0 opacity-20 filter grayscale">🔩</span>
+                                        <span class="flex-shrink-0 opacity-20 filter grayscale">🔩</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span
+                                class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
+                                450
+                            </span>
+                        </div>
+
+                        <!-- Карточка 4: Аня (Ждет очередь, 2 болта) -->
+                        <div
+                            class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
+                                <div class="flex flex-col min-w-0">
+                                    <span
+                                        class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Аня</span>
+                                    <div class="flex gap-1 mt-1 text-sm select-none">
+                                        <span class="flex-shrink-0">🔩</span>
+                                        <span class="flex-shrink-0">🔩</span>
+                                        <span class="flex-shrink-0 opacity-20 filter grayscale">🔩</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span
+                                class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
+                                0
+                            </span>
+                        </div>
+
                     </div>
-                    <span
-                        class="font-mono font-black text-base bg-slate-950/80 px-3 py-1 rounded-lg border border-slate-800 text-amber-400 shadow-inner flex-shrink-0">
-                        350
-                    </span>
                 </div>
 
-                <!-- Карточка 2: Олег (Ждет очередь) -->
-                <div
-                    class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
-                        <div class="flex flex-col min-w-0">
-                            <span
-                                class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Олег</span>
-                            <div class="flex gap-1.5 mt-1.5">
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <span
-                        class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
-                        120
-                    </span>
-                </div>
-
-                <!-- Карточка 3: Влад (Ждет очередь) -->
-                <div
-                    class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
-                        <div class="flex flex-col min-w-0">
-                            <span
-                                class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Влад</span>
-                            <div class="flex gap-1.5 mt-1.5">
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <span
-                        class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
-                        450
-                    </span>
-                </div>
-
-                <!-- Карточка 4: Аня (Ждет очередь) -->
-                <div
-                    class="w-full bg-slate-900/40 backdrop-blur-md px-4 py-3 rounded-xl border border-slate-800/40 flex items-center justify-between gap-3 opacity-70 flex-shrink-0">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <span class="w-2.5 h-2.5 bg-slate-700 rounded-full flex-shrink-0"></span>
-                        <div class="flex flex-col min-w-0">
-                            <span
-                                class="font-bold text-base text-slate-400 truncate tracking-wide leading-tight">Аня</span>
-                            <div class="flex gap-1.5 mt-1.5">
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                                <span
-                                    class="w-2 h-2 bg-slate-800 rounded-full border border-slate-700 flex-shrink-0"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <span
-                        class="font-mono font-black text-base bg-slate-950/40 px-3 py-1 rounded-lg border border-slate-800 text-slate-500 flex-shrink-0">
-                        0
-                    </span>
-                </div>
 
             </section>
         </div>
